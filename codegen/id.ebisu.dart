@@ -31,12 +31,23 @@ void main() {
     ]
     ..libraries = [
       library('id')
+      ..doc = '''
+
+Support for consistent use of identifiers.  Identifiers are words used to create
+things like class names, variable names, function names, etc. Because different
+outputs will want different case conventions for different contexts, using the
+Id class allows a simple consistent input format (snake case) to be combined
+with the appropriate conventions (usually via templates) to produce consistent
+correct naming. Most ebisu entities are named (Libraries, Parts, Classes, etc).
+
+'''
       ..includeLogger = true
       ..variables = [
       ]
       ..enums = [
       ]
       ..imports = [
+        'dart:convert'
       ]
       ..classes = [
         class_('id')

@@ -1,7 +1,16 @@
+/// 
+/// Support for consistent use of identifiers.  Identifiers are words used to create
+/// things like class names, variable names, function names, etc. Because different
+/// outputs will want different case conventions for different contexts, using the
+/// Id class allows a simple consistent input format (snake case) to be combined
+/// with the appropriate conventions (usually via templates) to produce consistent
+/// correct naming. Most ebisu entities are named (Libraries, Parts, Classes, etc).
+/// 
+/// 
 library id;
 
+import 'dart:convert';
 import 'package:logging/logging.dart';
-import 'package:logging_handlers/logging_handlers_shared.dart';
 
 final _logger = new Logger("id");
 
@@ -85,21 +94,14 @@ class Id {
   /// Return new id as the plural of the argument (`Id('dog')` => `Id('dogs')`)
   static Id pluralize(Id id, [ String suffix = 's' ]) => new Id(id._id + suffix);
 
-  static Id fromString(String id) {
-    return new Id(id);
-  }
-
   String toString() => camel;
 
-  Map toJson() { 
-    return { 
-    "id": EBISU_UTILS.toJson(_id),
-    "words": EBISU_UTILS.toJson(_words),
-    };
-  }
+  bool operator ==(Id other) => _id == other._id;
+
+  toJson() => JSON.encode({"id" : _id});
 
   static Id fromJson(String json) {
-    Map jsonMap = JSON.parse(json);
+    Map jsonMap = JSON.decode(json);
     return fromJsonMap(jsonMap);
   }
 

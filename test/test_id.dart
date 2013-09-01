@@ -61,6 +61,15 @@ main() {
       expect(Id.uncapitalize(' oops'), ' oops');
     });
 
+    test('==', () {
+      expect(new Id('one_two_three'), idFromString('oneTwoThree'));
+      expect(new Id('one_two_three') != idFromString('threeTwoOne'), true);
+    });
+
+    test('json', () {
+      var id = new Id('how_now_brown_cow');
+      expect(id, Id.fromJson(id.toJson()));
+    });
     
   });
 
