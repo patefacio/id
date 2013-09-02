@@ -19,7 +19,7 @@ void main() {
     ..includeReadme = true
     ..includeHop = true
     ..pubSpec.homepage = 'https://github.com/patefacio/id'
-    ..pubSpec.version = '0.0.1'
+    ..pubSpec.version = '0.0.2'
     ..pubSpec.doc = 'Library for consistent usage of identifiers'
     ..rootPath = '$_topDir'
     ..doc = 'Provide basic utilities for consistently creating identfiers'
