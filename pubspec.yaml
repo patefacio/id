@@ -5,9 +5,17 @@ homepage: https://github.com/patefacio/id
 description: >
   Library for consistent usage of identifiers
 dependencies:
-  hop:  "0.24.2"
-  logging:  "any"
-  logging_handlers:  "any"
+  logging: "any"
+
+  logging_handlers: "any"
+
 # custom <id dependencies>
 # end <id dependencies>
+
+dev_dependencies:
+  hop: "0.24.2"
+
+# custom <id dev dependencies>
+# end <id dev dependencies>
+
 
