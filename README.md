@@ -1,27 +1,27 @@
 # Id
 
-<!-- custom <introduction> -->
+<!--- custom <introduction> --->
 
 A library for consistently representing identifiers, usually in a code
 generation setting.
 
-<!-- end <introduction> -->
+<!--- end <introduction> --->
 
 
 # Purpose
 
-<!-- custom <purpose> -->
+<!--- custom <purpose> --->
 
 The purpose of the library is to have a standard way of generating an
 object, an _Id_, that can be used in any of a variety of casing
 contexts.
 
-<!-- end <purpose> -->
+<!--- end <purpose> --->
 
 
 # Examples
 
-<!-- custom <examples> -->
+<!--- custom <examples> --->
 
 For example, suppose you are writing a code generator that has a need
 for a single id with multiple representations. The following
@@ -53,12 +53,12 @@ An library function accepts either _snake_ or any _camel_ and returns a new Id:
 
     var id = idFromString('testName');
 
-<!-- end <examples> -->
+<!--- end <examples> --->
 
 
 # TODO
 
-<!-- custom <todos> -->
-<!-- end <todos> -->
+<!--- custom <todos> --->
+<!--- end <todos> --->
 
 
