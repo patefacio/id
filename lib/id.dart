@@ -5,21 +5,22 @@
 /// Id class allows a simple consistent input format (snake case) to be combined
 /// with the appropriate conventions (usually via templates) to produce consistent
 /// correct naming. Most ebisu entities are named (Libraries, Parts, Classes, etc).
-/// 
+///
 /// 
 library id;
 
 import 'dart:convert';
 import 'package:logging/logging.dart';
+// custom <additional imports>
+// end <additional imports>
+
 
 final _logger = new Logger("id");
 
 /// Given an id (all lower case string of words separated by '_')...
 class Id {
-  final String _id;
   /// String containing the lower case words separated by '_'
   String get id => _id;
-  final List<String> _words;
   /// Words comprising the id
   List<String> get words => _words;
 
@@ -110,6 +111,8 @@ class Id {
   }
 
   // end <class Id>
+  final String _id;
+  final List<String> _words;
 }
 
 
