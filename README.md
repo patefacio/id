@@ -5,6 +5,8 @@
 A library for consistently representing identifiers, usually in a code
 generation setting.
 
+[![Build Status](https://drone.io/github.com/patefacio/id/status.png)](https://drone.io/github.com/patefacio/id/latest)
+
 <!--- end <introduction> --->
 
 
