@@ -18,7 +18,7 @@ void main() {
     ..includeReadme = true
     ..includeHop = true
     ..pubSpec.homepage = 'https://github.com/patefacio/id'
-    ..pubSpec.version = '0.0.4'
+    ..pubSpec.version = '0.0.5'
     ..pubSpec.doc = 'Library for consistent usage of identifiers'
     ..rootPath = '$_topDir'
     ..doc = 'Provide basic utilities for consistently creating identfiers'
@@ -51,7 +51,6 @@ correct naming. Most ebisu entities are named (Libraries, Parts, Classes, etc).
       ..classes = [
         class_('id')
         ..doc = "Given an id (all lower case string of words separated by '_')..."
-        ..ctorSansNew = true
         ..members = [
           member('id')
           ..doc = "String containing the lower case words separated by '_'"
