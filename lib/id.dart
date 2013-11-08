@@ -115,7 +115,6 @@ class Id {
   final List<String> _words;
 }
 
-
 // custom <library id>
 
 Id idFromString(String text) {

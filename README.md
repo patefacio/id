@@ -1,5 +1,7 @@
 # Id
 
+
+
 <!--- custom <introduction> --->
 
 A library for consistently representing identifiers, usually in a code
@@ -62,9 +64,5 @@ An library function accepts either _snake_ or any _camel_ and returns a new Id:
 <!--- end <examples> --->
 
 
-# TODO
-
-<!--- custom <todos> --->
-<!--- end <todos> --->
 
 

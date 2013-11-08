@@ -3,14 +3,12 @@ library hop_runner;
 import 'dart:async';
 import 'dart:io';
 import 'package:hop/hop.dart';
-import "package:path/path.dart" as PATH;
 import 'package:hop/hop_tasks.dart';
-import '../test/utils.dart';
 import '../test/runner.dart' as runner;
 
-void main() {
+void main(List<String> args) {
 
-  Directory.current = packageRootPath;
+  Directory.current = runner.rootPath;
 
   addTask('analyze_lib', createAnalyzerTask(_getLibs));
   addTask('docs', createDartDocTask(_getLibs));
@@ -21,7 +19,7 @@ void main() {
 
   addTask('test', createUnitTestTask(runner.testCore));
 
-  runHop();
+  runHop(args);
 }
 
 Future<List<String>> _getLibs() {

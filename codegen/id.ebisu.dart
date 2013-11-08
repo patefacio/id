@@ -11,15 +11,14 @@ void main() {
       print("${r.loggerName} [${r.level}]:\t${r.message}"));
   Logger.root.level = Level.INFO;
 
-  Options options = new Options();
-  String here = path.absolute(options.script);
+  String here = path.absolute(Platform.script.path);
   _topDir = path.dirname(path.dirname(here));
   System ebisu = system('id')
     ..license = 'boost'
     ..includeReadme = true
     ..includeHop = true
     ..pubSpec.homepage = 'https://github.com/patefacio/id'
-    ..pubSpec.version = '0.0.3'
+    ..pubSpec.version = '0.0.4'
     ..pubSpec.doc = 'Library for consistent usage of identifiers'
     ..rootPath = '$_topDir'
     ..doc = 'Provide basic utilities for consistently creating identfiers'
