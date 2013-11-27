@@ -8,8 +8,7 @@ import 'package:unittest/unittest.dart';
 
 // custom <library test_id>
 // end <library test_id>
-
-main() { 
+main() {
 // custom <main>
 
   var thrownItem = new isInstanceOf<ArgumentError>();

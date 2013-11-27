@@ -18,7 +18,7 @@ void main() {
     ..includeReadme = true
     ..includeHop = true
     ..pubSpec.homepage = 'https://github.com/patefacio/id'
-    ..pubSpec.version = '0.0.5'
+    ..pubSpec.version = '1.0.0'
     ..pubSpec.doc = 'Library for consistent usage of identifiers'
     ..rootPath = '$_topDir'
     ..doc = 'Provide basic utilities for consistently creating identfiers'
@@ -66,4 +66,3 @@ correct naming. Most ebisu entities are named (Libraries, Parts, Classes, etc).
     ];
   ebisu.generate();
 }
-
