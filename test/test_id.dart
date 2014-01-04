@@ -1,4 +1,4 @@
-library test_id;
+library id.test_id;
 
 import 'package:id/id.dart';
 import 'package:unittest/unittest.dart';

@@ -7,7 +7,7 @@
 /// correct naming. Most ebisu entities are named (Libraries, Parts, Classes, etc).
 ///
 /// 
-library id;
+library id.id;
 
 import 'dart:convert';
 import 'package:logging/logging.dart';
