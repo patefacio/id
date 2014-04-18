@@ -12,15 +12,13 @@ dependencies:
 
 dev_dependencies:
   hop: ">=0.27.0"
+  hop_docgen: ">=0.1.0 <0.2.0"
 
 # custom <id dev dependencies>
-
-environment: 
-  sdk: ">=0.8.10+6 <2.0.0" 
-
+  ebisu: "any"
 # end <id dev dependencies>
 
 transformers:
+
 # custom <id transformers>
 # end <id transformers>
-

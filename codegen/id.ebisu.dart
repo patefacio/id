@@ -51,6 +51,8 @@ correct naming. Most ebisu entities are named (Libraries, Parts, Classes, etc).
       ..classes = [
         class_('id')
         ..doc = "Given an id (all lower case string of words separated by '_')..."
+        ..opEquals = true
+        ..implement = [ 'Comparable<Id>' ]
         ..members = [
           member('id')
           ..doc = "String containing the lower case words separated by '_'"

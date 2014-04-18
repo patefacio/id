@@ -1,10 +1,9 @@
-library id.test_id;
+library id.test.test_id;
 
 import 'package:id/id.dart';
 import 'package:unittest/unittest.dart';
 // custom <additional imports>
 // end <additional imports>
-
 
 // custom <library test_id>
 // end <library test_id>
@@ -54,6 +53,11 @@ main() {
       expect(Id.isCapCamel('thisIsNotCapCamel'), false);
       expect(Id.isSnake('this_is_snake'), true);
       expect(Id.isSnake('this_is_not_Snake'), false);
+      expect(Id.isSnake('this_1_is_not_snake'), false);
+      expect(Id.isSnake('this1_is_nake'), true);
+
+      expect(Id.isCamel('This1isCamel'), true);
+      expect(Id.isCamel('3ThisisCamel'), false);
     });
 
     test('capitalize/uncapitalize', () {
@@ -72,7 +76,7 @@ main() {
       var id = new Id('how_now_brown_cow');
       expect(id, Id.fromJson(id.toJson()));
     });
-    
+
   });
 
 // end <main>
