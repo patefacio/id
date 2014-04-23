@@ -8,9 +8,12 @@ dependencies:
   logging: ">=0.7.1"
 
 # custom <id dependencies>
+  quiver: ">=0.18.0<0.19.0"
 # end <id dependencies>
 
 dev_dependencies:
+  unittest: ">=0.9.0 < 0.10.0"
+  browser: "any"
   hop: ">=0.27.0"
   hop_docgen: ">=0.1.0 <0.2.0"
 
@@ -22,3 +25,4 @@ transformers:
 
 # custom <id transformers>
 # end <id transformers>
+

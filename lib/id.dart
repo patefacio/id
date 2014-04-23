@@ -12,6 +12,7 @@ library id.id;
 import 'dart:convert';
 import 'package:collection/equality.dart';
 import 'package:logging/logging.dart';
+import 'package:quiver/core.dart';
 // custom <additional imports>
 // end <additional imports>
 
@@ -22,17 +23,10 @@ class Id implements Comparable<Id> {
 
   bool operator==(Id other) =>
     identical(this, other) ||
-        _id == other._id &&
-      const ListEquality().equals(_words, other._words);
+    _id == other._id &&
+    const ListEquality().equals(_words, other._words);
 
-  int get hashCode {
-    int result = 17;
-    final int prime = 23;
-    result = result*prime + _id.hashCode;
-    if(_words != null)
-      result = result*prime + const ListEquality<String>().hash(_words);
-    return result;
-  }
+  int get hashCode => hash2(_id, const ListEquality<String>().hash(_words));
 
   /// String containing the lower case words separated by '_'
   String get id => _id;
