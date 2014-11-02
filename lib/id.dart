@@ -6,7 +6,7 @@
 /// with the appropriate conventions (usually via templates) to produce consistent
 /// correct naming. Most ebisu entities are named (Libraries, Parts, Classes, etc).
 ///
-/// 
+///
 library id.id;
 
 import 'dart:convert';
@@ -92,6 +92,8 @@ class Id implements Comparable<Id> {
   String get camel => uncapitalize(_words.map((w) => capitalize(w)).join(''));
   /// Return as cap camel case, same as camel with first word capitalized (e.g. `how_now_brown_cow` => `HowNowBrownCow`)
   String get capCamel => _words.map((w) => capitalize(w)).join('');
+  /// Return snake case capitalized (e.g. `how_now_brown_cow` => 'How_now_brown_cow`)
+  String get capSnake => capitalize(snake);
   /// Return all caps with underscore separator (e.g. `how_now_brown_cow` => `HOW_NOW_BROWN_COW`)
   String get shout => _words.map((w) => w.toUpperCase()).join('_');
   /// Return each word capitalized with space `' '` separator (e.g. `how_now_brown_cow` => `How Now Brown Cow`)

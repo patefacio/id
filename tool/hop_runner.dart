@@ -19,8 +19,6 @@ void main(List<String> args) {
         "test/test_id.dart"
       ]));
 
-  addTask('test', createUnitTestTask(runner.testCore));
-
   runHop(args);
 }
 
