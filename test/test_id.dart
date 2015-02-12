@@ -1,3 +1,5 @@
+/// Tests id functionality
+///
 library id.test.test_id;
 
 import 'package:id/id.dart';

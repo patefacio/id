@@ -1,25 +1,29 @@
 name: id
-version: 1.0.3
+version: 1.0.4
 author: Daniel Davidson <dbdavidson@yahoo.com>
 homepage: https://github.com/patefacio/id
 description: >
   Library for consistent usage of identifiers
 dependencies:
-  logging: ">=0.9.2 <0.10.0"
+  logging: "any"
 
 # custom <id dependencies>
   quiver: ">=0.18.0<0.19.0"
 # end <id dependencies>
 
 dev_dependencies:
-  unittest: ">=0.11.0"
+  unittest: ">=0.11.0 < 0.12.0"
   browser: "any"
-  hop: ">=0.31.0"
-  hop_docgen: ">=0.1.0 <0.2.0"
+  hop: "any"
+  hop_docgen: "any"
 
 # custom <id dev dependencies>
   ebisu: "any"
 # end <id dev dependencies>
+
+dependency_overrides:
+# custom <id dependency overrides>
+# end <id dependency overrides>
 
 transformers:
 

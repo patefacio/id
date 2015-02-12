@@ -15,15 +15,17 @@ void main() {
   _topDir = path.dirname(path.dirname(here));
   System ebisu = system('id')
     ..license = 'boost'
-    ..includeReadme = true
     ..includeHop = true
     ..pubSpec.homepage = 'https://github.com/patefacio/id'
-    ..pubSpec.version = '1.0.3'
+    ..pubSpec.version = '1.0.4'
     ..pubSpec.doc = 'Library for consistent usage of identifiers'
     ..rootPath = '$_topDir'
     ..doc = 'Provide basic utilities for consistently creating identfiers'
     ..testLibraries = [
       library('test_id')
+      ..doc = '''
+Tests id functionality
+'''
       ..imports = [
         'package:id/id.dart'
       ]
@@ -41,10 +43,6 @@ correct naming. Most ebisu entities are named (Libraries, Parts, Classes, etc).
 
 '''
       ..includeLogger = true
-      ..variables = [
-      ]
-      ..enums = [
-      ]
       ..imports = [
         'dart:convert'
       ]
