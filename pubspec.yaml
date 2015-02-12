@@ -5,10 +5,10 @@ homepage: https://github.com/patefacio/id
 description: >
   Library for consistent usage of identifiers
 dependencies:
-  logging: "any"
 
 # custom <id dependencies>
   quiver: ">=0.18.0<0.19.0"
+  logging: ">=0.9.3<0.10.0"  
 # end <id dependencies>
 
 dev_dependencies:
