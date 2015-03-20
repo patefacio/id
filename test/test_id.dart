@@ -2,14 +2,21 @@
 ///
 library id.test.test_id;
 
+import 'package:args/args.dart';
 import 'package:id/id.dart';
+import 'package:logging/logging.dart';
 import 'package:unittest/unittest.dart';
 // custom <additional imports>
 // end <additional imports>
 
+final _logger = new Logger('test_id');
+
 // custom <library test_id>
 // end <library test_id>
-main() {
+main([List<String> args]) {
+  Logger.root.onRecord.listen((LogRecord r) =>
+      print("${r.loggerName} [${r.level}]:\t${r.message}"));
+  Logger.root.level = Level.OFF;
 // custom <main>
 
   var thrownItem = new isInstanceOf<ArgumentError>();

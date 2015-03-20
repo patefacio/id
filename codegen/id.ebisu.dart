@@ -15,9 +15,9 @@ void main() {
   _topDir = path.dirname(path.dirname(here));
   System ebisu = system('id')
     ..license = 'boost'
-    ..includeHop = true
+    ..includesHop = true
     ..pubSpec.homepage = 'https://github.com/patefacio/id'
-    ..pubSpec.version = '1.0.4'
+    ..pubSpec.version = '1.0.5'
     ..pubSpec.doc = 'Library for consistent usage of identifiers'
     ..rootPath = '$_topDir'
     ..doc = 'Provide basic utilities for consistently creating identfiers'
@@ -42,14 +42,14 @@ with the appropriate conventions (usually via templates) to produce consistent
 correct naming. Most ebisu entities are named (Libraries, Parts, Classes, etc).
 
 '''
-      ..includeLogger = true
+      ..includesLogger = true
       ..imports = [
         'dart:convert'
       ]
       ..classes = [
         class_('id')
         ..doc = "Given an id (all lower case string of words separated by '_')..."
-        ..opEquals = true
+        ..hasOpEquals = true
         ..implement = [ 'Comparable<Id>' ]
         ..members = [
           member('id')
