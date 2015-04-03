@@ -51,6 +51,8 @@ main([List<String> args]) {
       common(idFromString('testName'));
       common(idFromString('test_name'));
       common(idFromString('TestName'));
+      expect(idFromString('FOOBAR').snake, 'foobar');
+      expect(idFromString('FOO_BAR').snake, 'foo_bar');
     });
 
     test('isCamel identification', () {

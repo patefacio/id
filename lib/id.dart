@@ -54,11 +54,15 @@ class Id
   static bool isCamel(String text) => _camelRe.firstMatch(text) != null;
   static bool isCapCamel(String text) => _capCamelRe.firstMatch(text) != null;
   static bool isSnake(String text) => _snakeRe.firstMatch(text) != null;
+  static bool isCapSnake(String text) => _capSnakeRe.firstMatch(text) != null;
+  static bool isAllCap(String text) => _allCapRe.firstMatch(text) != null;
 
   static RegExp _capCamelRe = new RegExp(r'^[A-Z][A-Za-z\d]*$');
   static RegExp _camelRe = new RegExp(r'^(?:[A-Za-z]+[a-z\d]*)+$');
   static RegExp _snakeRe = new RegExp(r'^(?:[a-z][a-z\d]*_?)+$');
+  static RegExp _capSnakeRe = new RegExp(r'^[A-Z](?:[a-z\d]*_?)+$');
   static RegExp _capWordDelimiterRe = new RegExp('[A-Z]');
+  static RegExp _allCapRe = new RegExp(r'^[A-Z][A-Z_\d]+$');
   static RegExp _leadingTrailingUnderbarRe = new RegExp(r'(?:^_)|(?:_$)');
 
   static String splitCamelHumps(String text) {
@@ -132,8 +136,10 @@ Id idFromString(String text) {
   return
     Id.isSnake(text)?
     new Id(text) :
-    (Id.isCamel(text)? new Id.fromCamels(text) :
-        throw new ArgumentError("$text is neither snake or camel"));
+    (Id.isAllCap(text)? new Id(text.toLowerCase()) :
+        (Id.isCamel(text)? new Id.fromCamels(text) :
+            (Id.isCapSnake(text)? new Id(text.toLowerCase()) :
+                throw new ArgumentError("$text is neither snake or camel"))));
 }
 
 // end <library id>
