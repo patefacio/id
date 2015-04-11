@@ -21,6 +21,7 @@ final _logger = new Logger('id');
 /// Given an id (all lower case string of words separated by '_')...
 class Id
   implements Comparable<Id> {
+
   bool operator==(Id other) =>
     identical(this, other) ||
     _id == other._id &&
@@ -32,6 +33,7 @@ class Id
   String get id => _id;
   /// Words comprising the id
   List<String> get words => _words;
+
   // custom <class Id>
 
   /// `id` must be a string in snake case (e.g. `how_now_brown_cow`)
@@ -126,9 +128,12 @@ class Id
   int compareTo(Id other) => id.compareTo(other._id);
 
   // end <class Id>
+
   final String _id;
   final List<String> _words;
+
 }
+
 
 // custom <library id>
 
