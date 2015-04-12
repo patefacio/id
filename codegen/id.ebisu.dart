@@ -17,7 +17,7 @@ void main() {
     ..license = 'boost'
     ..includesHop = true
     ..pubSpec.homepage = 'https://github.com/patefacio/id'
-    ..pubSpec.version = '1.0.7'
+    ..pubSpec.version = '1.0.8'
     ..pubSpec.doc = 'Library for consistent usage of identifiers'
     ..rootPath = '$_topDir'
     ..doc = 'Provide basic utilities for consistently creating identfiers'

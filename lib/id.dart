@@ -1,4 +1,4 @@
-/// 
+///
 /// Support for consistent use of identifiers.  Identifiers are words used to create
 /// things like class names, variable names, function names, etc. Because different
 /// outputs will want different case conventions for different contexts, using the
@@ -137,14 +137,38 @@ class Id
 
 // custom <library id>
 
-Id idFromString(String text) {
-  return
+/// Create an [Id] from text
+///
+/// Provides a heuristic to turn a string into an [Id] where individual words
+/// are identified.
+///
+/// For example, each of the following print *[ 'this', 'is', 'a', 'test' ]*
+///
+///     print(idFromString('thisIsATest').words);
+///     print(idFromString('this_is_a_test').words);
+///     print(idFromString('ThisIsATest').words);
+///     print(idFromString('This_is_a_test').words);
+///     print(idFromString('THIS_IS_A_TEST').words);
+///
+Id idFromString(String text) =>
     Id.isSnake(text)?
     new Id(text) :
     (Id.isAllCap(text)? new Id(text.toLowerCase()) :
         (Id.isCamel(text)? new Id.fromCamels(text) :
             (Id.isCapSnake(text)? new Id(text.toLowerCase()) :
                 throw new ArgumentError("$text is neither snake or camel"))));
-}
+
+final _whiteSpaceRe = new RegExp(r'\s+');
+
+/// Create an [Id] from a sentence like string of white-space delimited words
+///
+/// For example, each of the following print *[ 'this', 'is', 'a', 'test' ]*
+///
+///     print(idFromWords('this is a test').words);
+///     print(idFromWords('This is a test').words);
+///     print(idFromWords('  THIS IS A TEST  ').words);
+///
+Id idFromWords(String words) =>
+  idFromString(words.trim().replaceAll(_whiteSpaceRe, '_'));
 
 // end <library id>

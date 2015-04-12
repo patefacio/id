@@ -47,12 +47,16 @@ main([List<String> args]) {
       expect(() => new Id.fromCamels('test_name'), throwsA(thrownItem));
     });
 
-    test('creation from idFromString', () {
+    test('creation from idFromString/idFromWords', () {
       common(idFromString('testName'));
       common(idFromString('test_name'));
       common(idFromString('TestName'));
       expect(idFromString('FOOBAR').snake, 'foobar');
       expect(idFromString('FOO_BAR').snake, 'foo_bar');
+      expect(idFromWords('this is a test').snake, 'this_is_a_test');
+      expect(idFromWords(' this   is a test  ').snake, 'this_is_a_test');
+      expect(idFromWords('this is a test').snake, 'this_is_a_test');
+      expect(idFromWords('THIS   IS A TEST  ').snake, 'this_is_a_test');
     });
 
     test('isCamel identification', () {
