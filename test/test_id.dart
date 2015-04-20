@@ -13,6 +13,7 @@ final _logger = new Logger('test_id');
 
 // custom <library test_id>
 // end <library test_id>
+
 main([List<String> args]) {
   Logger.root.onRecord.listen((LogRecord r) =>
       print("${r.loggerName} [${r.level}]:\t${r.message}"));
@@ -23,14 +24,16 @@ main([List<String> args]) {
 
   common(tn) {
     expect(tn.id, 'test_name');
-    expect(tn.snake, 'test_name');
+
+    expect(tn.abbrev, 'tn');
     expect(tn.camel, 'testName');
     expect(tn.capCamel, 'TestName');
     expect(tn.emacs, 'test-name');
-    expect(tn.title, 'Test Name');
+    expect(tn.sentence, 'test name');
     expect(tn.shout, 'TEST_NAME');
+    expect(tn.snake, 'test_name');
     expect(tn.squish, 'testname');
-    expect(tn.abbrev, 'tn');
+    expect(tn.title, 'Test Name');
   }
 
   group('basics', () {
@@ -95,5 +98,6 @@ main([List<String> args]) {
   });
 
 // end <main>
+
 
 }

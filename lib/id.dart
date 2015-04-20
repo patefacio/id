@@ -107,6 +107,8 @@ class Id
   String get squish => _words.join('');
   /// Return first letter of each word joined together (e.g. `how_now_brown_cow` => `hnbc`)
   String get abbrev => _words.map((w) => w[0]).join();
+  /// Return the words joined with spaces like a sentence only (without first word capitalized)
+  String get sentence => _words.join(' ');
 
   /// Return new id as the plural of the argument (`Id('dog')` => `Id('dogs')`)
   static Id pluralize(Id id, [ String suffix = 's' ]) => new Id(id._id + suffix);
