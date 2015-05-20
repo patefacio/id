@@ -1,11 +1,11 @@
 /// Tests id functionality
-///
-library id.test.test_id;
+library id.test_id;
 
 import 'package:args/args.dart';
 import 'package:id/id.dart';
 import 'package:logging/logging.dart';
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
+
 // custom <additional imports>
 // end <additional imports>
 
@@ -62,6 +62,16 @@ main([List<String> args]) {
       expect(idFromWords('THIS   IS A TEST  ').snake, 'this_is_a_test');
     });
 
+    group('words starting with number', () {
+      test('allowed in Id ctor', () {
+        expect(new Id('a_1').toString(), 'a1');
+      });
+
+      test('not allowed in idFromString', () {
+        expect(() => idFromString('a_1'), throws);
+      });
+    });
+
     test('isCamel identification', () {
       expect(Id.isCamel('ThisIsCamel'), true);
       expect(Id.isCamel('thisIsCamel'), true);
@@ -101,3 +111,5 @@ main([List<String> args]) {
 
 
 }
+
+

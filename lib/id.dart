@@ -1,18 +1,17 @@
-///
+/// 
 /// Support for consistent use of identifiers.  Identifiers are words used to create
 /// things like class names, variable names, function names, etc. Because different
 /// outputs will want different case conventions for different contexts, using the
 /// Id class allows a simple consistent input format (snake case) to be combined
 /// with the appropriate conventions (usually via templates) to produce consistent
 /// correct naming. Most ebisu entities are named (Libraries, Parts, Classes, etc).
-///
-///
 library id.id;
 
 import 'dart:convert';
 import 'package:collection/equality.dart';
 import 'package:logging/logging.dart';
 import 'package:quiver/core.dart';
+
 // custom <additional imports>
 // end <additional imports>
 
@@ -136,7 +135,6 @@ class Id
 
 }
 
-
 // custom <library id>
 
 /// Create an [Id] from text
@@ -174,3 +172,5 @@ Id idFromWords(String words) =>
   idFromString(words.trim().replaceAll(_whiteSpaceRe, '_'));
 
 // end <library id>
+
+

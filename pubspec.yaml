@@ -1,5 +1,5 @@
 name: id
-version: 1.0.9
+version: 1.0.10
 author: Daniel Davidson <dbdavidson@yahoo.com>
 homepage: https://github.com/patefacio/id
 description: >
@@ -14,13 +14,14 @@ dependencies:
 
 dev_dependencies:
   yaml: "any"
-  unittest: ">=0.11.0 < 0.12.0"
   browser: "any"
   hop: "any"
   hop_docgen: "any"
 
 # custom <id dev dependencies>
-#  ebisu: "^0.1.0"
+
+  test: "^0.12.0"
+
 # end <id dev dependencies>
 
 dependency_overrides:
