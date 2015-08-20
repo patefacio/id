@@ -1,7 +1,6 @@
 /// Tests id functionality
 library id.test_id;
 
-import 'package:args/args.dart';
 import 'package:id/id.dart';
 import 'package:logging/logging.dart';
 import 'package:test/test.dart';
@@ -65,10 +64,14 @@ main([List<String> args]) {
     group('words starting with number', () {
       test('allowed in Id ctor', () {
         expect(new Id('a_1').toString(), 'a1');
+        expect(idFromString('A_1_a_a').snake, 'a_1_a_a');
       });
 
       test('not allowed in idFromString', () {
-        expect(() => idFromString('a_1'), throws);
+        expect(() => idFromString('a__'), throws);
+        expect(() => idFromString('A__'), throws);
+        expect(() => idFromString('A_1_'), throws);
+        expect(() => idFromString('A_1_a_A'), throws);
       });
     });
 
@@ -81,7 +84,7 @@ main([List<String> args]) {
       expect(Id.isCapCamel('thisIsNotCapCamel'), false);
       expect(Id.isSnake('this_is_snake'), true);
       expect(Id.isSnake('this_is_not_Snake'), false);
-      expect(Id.isSnake('this_1_is_not_snake'), false);
+      expect(Id.isSnake('this_1_is_snake'), true);
       expect(Id.isSnake('this1_is_nake'), true);
 
       expect(Id.isCamel('This1isCamel'), true);

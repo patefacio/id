@@ -1,11 +1,5 @@
-import 'package:test/test.dart';
 import 'package:logging/logging.dart';
 import 'test_id.dart' as test_id;
-
-void testCore(Configuration config) {
-  unittestConfiguration = config;
-  main();
-}
 
 main() {
   Logger.root.level = Level.OFF;

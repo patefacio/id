@@ -60,8 +60,8 @@ class Id
 
   static RegExp _capCamelRe = new RegExp(r'^[A-Z][A-Za-z\d]*$');
   static RegExp _camelRe = new RegExp(r'^(?:[A-Za-z]+[a-z\d]*)+$');
-  static RegExp _snakeRe = new RegExp(r'^(?:[a-z][a-z\d]*_?)+$');
-  static RegExp _capSnakeRe = new RegExp(r'^[A-Z](?:[a-z\d]*_?)+$');
+  static RegExp _snakeRe = new RegExp(r'^[a-z]+[a-z\d]*(?:_[a-z\d]+)*$');
+  static RegExp _capSnakeRe = new RegExp(r'^[A-Z][a-z\d]*(?:_[a-z\d]+)*$');
   static RegExp _capWordDelimiterRe = new RegExp('[A-Z]');
   static RegExp _allCapRe = new RegExp(r'^[A-Z][A-Z_\d]+$');
   static RegExp _leadingTrailingUnderbarRe = new RegExp(r'(?:^_)|(?:_$)');
@@ -153,7 +153,7 @@ class Id
 Id idFromString(String text) =>
     Id.isSnake(text)?
     new Id(text) :
-    (Id.isAllCap(text)? new Id(text.toLowerCase()) :
+    (Id.isAllCap(text)? idFromString(text.toLowerCase()) :
         (Id.isCamel(text)? new Id.fromCamels(text) :
             (Id.isCapSnake(text)? new Id(text.toLowerCase()) :
                 throw new ArgumentError("$text is neither snake or camel"))));
