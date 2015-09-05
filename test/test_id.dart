@@ -108,6 +108,14 @@ main([List<String> args]) {
       expect(id, Id.fromJson(id.toJson()));
     });
 
+    test('capSubstringToCamel', () {
+      expect(capSubstringToCamel('shouldFixABC'), 'shouldFixAbc');
+      expect(capSubstringToCamel('ABCDE'), 'Abcde');
+      expect(capSubstringToCamel('ABCDEFoobar'), 'AbcdeFoobar');
+      expect(capSubstringToCamel('gooFOOMoo'), 'gooFooMoo');
+      expect(capSubstringToCamel('CIASpy'), 'CiaSpy');
+    });
+
   });
 
 // end <main>

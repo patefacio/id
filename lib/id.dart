@@ -171,6 +171,17 @@ final _whiteSpaceRe = new RegExp(r'\s+');
 Id idFromWords(String words) =>
   idFromString(words.trim().replaceAll(_whiteSpaceRe, '_'));
 
+final _capSubstring = new RegExp(r'([A-Z]+)([A-Z]|$)');
+
+///
+/// Given a camel case word [s] with all cap abbreviations embedded, converts
+/// the abbreviations to camel.
+///
+/// e.g.  capSubstringToCamel('CIASpy') -> 'CiaSpy'
+///
+capSubstringToCamel(String s) => s.replaceAllMapped(
+    _capSubstring, (Match m) => '${Id.capitalize(m[1].toLowerCase())}${m[2]}');
+
 // end <library id>
 
 
