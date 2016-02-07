@@ -1,4 +1,4 @@
-/// 
+///
 /// Support for consistent use of identifiers.  Identifiers are words used to create
 /// things like class names, variable names, function names, etc. Because different
 /// outputs will want different case conventions for different contexts, using the
@@ -158,6 +158,13 @@ Id idFromString(String text) =>
             (Id.isCapSnake(text)? new Id(text.toLowerCase()) :
                 throw new ArgumentError("$text is neither snake or camel"))));
 
+/// Creates an [Id] when passed [String], returns the Id when passed an Id
+Id getOrCreateId(id) => id is Id
+    ? id
+    : id is String
+        ? idFromString(id)
+        : throw '*getOrCreateId(id)* requires an [Id] or [String], given ${id.runtimeType}';
+
 final _whiteSpaceRe = new RegExp(r'\s+');
 
 /// Create an [Id] from a sentence like string of white-space delimited words
@@ -183,5 +190,3 @@ capSubstringToCamel(String s) => s.replaceAllMapped(
     _capSubstring, (Match m) => '${Id.capitalize(m[1].toLowerCase())}${m[2]}');
 
 // end <library id>
-
-
