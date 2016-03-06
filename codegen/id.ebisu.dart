@@ -1,5 +1,6 @@
 import "dart:io";
 import "package:path/path.dart" as path;
+import "package:ebisu/ebisu.dart";
 import "package:ebisu/ebisu_dart_meta.dart";
 import 'package:logging/logging.dart';
 
@@ -11,13 +12,15 @@ void main() {
       print("${r.loggerName} [${r.level}]:\t${r.message}"));
   Logger.root.level = Level.OFF;
 
+  useDartFormatter = true;
+
   String here = path.absolute(Platform.script.toFilePath());
   _topDir = path.dirname(path.dirname(here));
   System ebisu = system('id')
     ..license = 'boost'
     ..includesHop = true
     ..pubSpec.homepage = 'https://github.com/patefacio/id'
-    ..pubSpec.version = '1.0.13'
+    ..pubSpec.version = '1.0.14'
     ..pubSpec.doc = 'Library for consistent usage of identifiers'
     ..rootPath = '$_topDir'
     ..doc = 'Provide basic utilities for consistently creating identfiers'
@@ -25,6 +28,13 @@ void main() {
       library('test_id')
       ..doc = '''
 Tests id functionality
+'''
+      ..imports = [
+        'package:id/id.dart'
+      ],
+      library('test_no_op_id')
+      ..doc = '''
+Tests NoOpId functionality
 '''
       ..imports = [
         'package:id/id.dart'
@@ -61,6 +71,21 @@ correct naming. Most ebisu entities are named (Libraries, Parts, Classes, etc).
           ..type = 'List<String>'
           ..access = Access.RO
           ..isFinal = true
+        ],
+        class_('no_op_id')
+        ..implement = [ 'Id' ]
+        ..doc = '''
+Supports the same interface as Id but all transformations like [camel], [snake],
+... resolve to no-ops.
+
+This provides the ability to circumvent hard *Id* casing rules in certain
+circumstances.
+'''
+        ..isImmutable = true
+        ..members = [
+          member('id')
+          ..doc = "String containing the lower case words separated by '_'"
+          ..access = Access.RO
         ]
       ]
     ];

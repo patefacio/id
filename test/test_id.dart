@@ -14,8 +14,8 @@ final _logger = new Logger('test_id');
 // end <library test_id>
 
 main([List<String> args]) {
-  Logger.root.onRecord.listen((LogRecord r) =>
-      print("${r.loggerName} [${r.level}]:\t${r.message}"));
+  Logger.root.onRecord.listen(
+      (LogRecord r) => print("${r.loggerName} [${r.level}]:\t${r.message}"));
   Logger.root.level = Level.OFF;
 // custom <main>
 
@@ -115,12 +115,7 @@ main([List<String> args]) {
       expect(capSubstringToCamel('gooFOOMoo'), 'gooFooMoo');
       expect(capSubstringToCamel('CIASpy'), 'CiaSpy');
     });
-
   });
 
 // end <main>
-
-
 }
-
-

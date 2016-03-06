@@ -1,5 +1,6 @@
 import 'package:logging/logging.dart';
 import 'test_id.dart' as test_id;
+import 'test_no_op_id.dart' as test_no_op_id;
 
 main() {
   Logger.root.level = Level.OFF;
@@ -8,5 +9,5 @@ main() {
   });
 
   test_id.main();
+  test_no_op_id.main();
 }
-

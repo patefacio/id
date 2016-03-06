@@ -18,32 +18,29 @@ import 'package:quiver/core.dart';
 final _logger = new Logger('id');
 
 /// Given an id (all lower case string of words separated by '_')...
-class Id
-  implements Comparable<Id> {
-
-  bool operator==(Id other) =>
-    identical(this, other) ||
-    _id == other._id &&
-    const ListEquality().equals(_words, other._words);
+class Id implements Comparable<Id> {
+  bool operator ==(Id other) =>
+      identical(this, other) ||
+      _id == other._id && const ListEquality().equals(_words, other._words);
 
   int get hashCode => hash2(_id, const ListEquality<String>().hash(_words));
 
   /// String containing the lower case words separated by '_'
   String get id => _id;
+
   /// Words comprising the id
   List<String> get words => _words;
 
   // custom <class Id>
 
   /// `id` must be a string in snake case (e.g. `how_now_brown_cow`)
-  Id(String id) :
-    _id = id,
-    _words = id.split('_')
-  {
-    if(null != _hasUpperRe.firstMatch(id)) {
+  Id(String id)
+      : _id = id,
+        _words = id.split('_') {
+    if (null != _hasUpperRe.firstMatch(id)) {
       throw new ArgumentError("Id must be lower case $id");
     }
-    if(null == _validSnakeRe.firstMatch(id)) {
+    if (null == _validSnakeRe.firstMatch(id)) {
       throw new ArgumentError("Id has invalid characters $id");
     }
   }
@@ -67,15 +64,15 @@ class Id
   static RegExp _leadingTrailingUnderbarRe = new RegExp(r'(?:^_)|(?:_$)');
 
   static String splitCamelHumps(String text) {
-    if(text.indexOf('_') >=0) {
+    if (text.indexOf('_') >= 0) {
       throw new ArgumentError("Camels can not have underscore: $text");
     }
 
-    var result =
-      text.splitMapJoin(_capWordDelimiterRe,
-          onMatch: (Match match) => match.group(0).toLowerCase(),
-          onNonMatch: (String nonMatch) => nonMatch + '_')
-      .replaceAll(_leadingTrailingUnderbarRe, '');
+    var result = text
+        .splitMapJoin(_capWordDelimiterRe,
+            onMatch: (Match match) => match.group(0).toLowerCase(),
+            onNonMatch: (String nonMatch) => nonMatch + '_')
+        .replaceAll(_leadingTrailingUnderbarRe, '');
     return result;
   }
 
@@ -90,31 +87,45 @@ class Id
 
   /// Return this id as snake case - (i.e. the case passed in for construction) (e.g. `how_now_brown_cow`)
   String get snake => _id;
+
   /// Return this id as hyphenated words (e.g. `how_now_brown_cow` => `how-now-brown-cow`)
   String get emacs => _words.join('-');
+
   /// Return as camel case, first character lower and each word capitalized (e.g. `how_now_brown_cow` => `howNowBrownCow`)
   String get camel => uncapitalize(_words.map((w) => capitalize(w)).join(''));
+
   /// Return as cap camel case, same as camel with first word capitalized (e.g. `how_now_brown_cow` => `HowNowBrownCow`)
   String get capCamel => _words.map((w) => capitalize(w)).join('');
+
   /// Return snake case capitalized (e.g. `how_now_brown_cow` => 'How_now_brown_cow`)
   String get capSnake => capitalize(snake);
+
   /// Return all caps with underscore separator (e.g. `how_now_brown_cow` => `HOW_NOW_BROWN_COW`)
   String get shout => _words.map((w) => w.toUpperCase()).join('_');
+
   /// Return each word capitalized with space `' '` separator (e.g. `how_now_brown_cow` => `How Now Brown Cow`)
   String get title => _words.map((w) => capitalize(w)).join(' ');
+
   /// Return words squished together with no separator (e.g. `how_now_brown_cow` => `hownowbrowncow`)
   String get squish => _words.join('');
+
   /// Return first letter of each word joined together (e.g. `how_now_brown_cow` => `hnbc`)
   String get abbrev => _words.map((w) => w[0]).join();
+
   /// Return the words joined with spaces like a sentence only (without first word capitalized)
   String get sentence => _words.join(' ');
 
   /// Return new id as the plural of the argument (`Id('dog')` => `Id('dogs')`)
-  static Id pluralize(Id id, [ String suffix = 's' ]) => new Id(id._id + suffix);
+  static Id pluralize(Id id, [String suffix = 's']) => new Id(id._id + suffix);
 
+  /// Returns the id with default casing of [camel]
   String toString() => camel;
 
-  toJson() => JSON.encode({"id" : _id});
+  toJson() => JSON.encode({"id": _id});
+
+  /// Returns a negative number if [this] is before [other], a postivie number
+  /// if [this] is after other and zero if they are the same
+  int compareTo(Id other) => id.compareTo(other.id);
 
   static Id fromJson(String json) {
     Map jsonMap = JSON.decode(json);
@@ -125,14 +136,67 @@ class Id
     return new Id(jsonMap["id"]);
   }
 
-
-  int compareTo(Id other) => id.compareTo(other._id);
-
   // end <class Id>
 
   final String _id;
   final List<String> _words;
+}
 
+/// Supports the same interface as Id but all transformations like [camel], [snake],
+/// ... resolve to no-ops.
+///
+/// This provides the ability to circumvent hard *Id* casing rules in certain
+/// circumstances.
+class NoOpId implements Id {
+  const NoOpId(this._id);
+
+  /// String containing the lower case words separated by '_'
+  String get id => _id;
+
+  // custom <class NoOpId>
+
+  /// Return [id]
+  String get snake => _id;
+
+  /// Return [id]
+  String get emacs => _id;
+
+  /// Return [id]
+  String get camel => _id;
+
+  /// Return [id]
+  String get capCamel => _id;
+
+  /// Return [id]
+  String get capSnake => _id;
+
+  /// Return [id]
+  String get shout => _id;
+
+  /// Return [id]
+  String get title => _id;
+
+  /// Return [id]
+  String get squish => _id;
+
+  /// Return [id]
+  String get abbrev => _id;
+
+  /// Return [id]
+  String get sentence => _id;
+
+  /// Return [id]
+  String toString() => _id;
+
+  /// Returns a negative number if [this] is before [other], a postivie number
+  /// if [this] is after other and zero if they are the same
+  int compareTo(Id other) => id.compareTo(other.id);
+
+  toJson() => JSON.encode({"id": _id});
+
+  // end <class NoOpId>
+
+  final String _id;
 }
 
 // custom <library id>
@@ -150,13 +214,15 @@ class Id
 ///     print(idFromString('This_is_a_test').words);
 ///     print(idFromString('THIS_IS_A_TEST').words);
 ///
-Id idFromString(String text) =>
-    Id.isSnake(text)?
-    new Id(text) :
-    (Id.isAllCap(text)? idFromString(text.toLowerCase()) :
-        (Id.isCamel(text)? new Id.fromCamels(text) :
-            (Id.isCapSnake(text)? new Id(text.toLowerCase()) :
-                throw new ArgumentError("$text is neither snake or camel"))));
+Id idFromString(String text) => Id.isSnake(text)
+    ? new Id(text)
+    : (Id.isAllCap(text)
+        ? idFromString(text.toLowerCase())
+        : (Id.isCamel(text)
+            ? new Id.fromCamels(text)
+            : (Id.isCapSnake(text)
+                ? new Id(text.toLowerCase())
+                : throw new ArgumentError("$text is neither snake or camel"))));
 
 /// Creates an [Id] when passed [String], returns the Id when passed an Id
 Id getOrCreateId(id) => id is Id
@@ -176,7 +242,7 @@ final _whiteSpaceRe = new RegExp(r'\s+');
 ///     print(idFromWords('  THIS IS A TEST  ').words);
 ///
 Id idFromWords(String words) =>
-  idFromString(words.trim().replaceAll(_whiteSpaceRe, '_'));
+    idFromString(words.trim().replaceAll(_whiteSpaceRe, '_'));
 
 final _capSubstring = new RegExp(r'([A-Z]+)([A-Z]|$)');
 
