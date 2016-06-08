@@ -1,9 +1,12 @@
 name: id
-version: 1.0.14
+version: 1.0.15
 author: Daniel Davidson <dbdavidson@yahoo.com>
 homepage: https://github.com/patefacio/id
 description: >
   Library for consistent usage of identifiers
+environment:
+  sdk: '>=1.8.2 <2.0.0'
+
 dependencies:
 
 # custom <id dependencies>
@@ -15,13 +18,11 @@ dependencies:
 dev_dependencies:
   yaml: "any"
   browser: "any"
-  hop: "any"
-  hop_docgen: "any"
 
 # custom <id dev dependencies>
 
   test: "^0.12.0"
-  ebisu: "^0.6.18"
+  ebisu: "^0.7.1"
 
 # end <id dev dependencies>
 
