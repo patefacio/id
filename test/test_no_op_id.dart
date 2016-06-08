@@ -21,7 +21,6 @@ main([List<String> args]) {
 
   test('id methods on NoOpId', () {
     final s = 'thisIsATest';
-    final normalId = idFromString(s);
     final noOpId = new NoOpId(s);
 
     expect(noOpId.snake, s);

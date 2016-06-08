@@ -7,9 +7,8 @@ import 'package:logging/logging.dart';
 String _topDir;
 
 void main() {
-
-  Logger.root.onRecord.listen((LogRecord r) =>
-      print("${r.loggerName} [${r.level}]:\t${r.message}"));
+  Logger.root.onRecord.listen(
+      (LogRecord r) => print("${r.loggerName} [${r.level}]:\t${r.message}"));
   Logger.root.level = Level.OFF;
 
   useDartFormatter = true;
@@ -25,23 +24,19 @@ void main() {
     ..doc = 'Provide basic utilities for consistently creating identfiers'
     ..testLibraries = [
       library('test_id')
-      ..doc = '''
+        ..doc = '''
 Tests id functionality
 '''
-      ..imports = [
-        'package:id/id.dart'
-      ],
+        ..imports = ['package:id/id.dart'],
       library('test_no_op_id')
-      ..doc = '''
+        ..doc = '''
 Tests NoOpId functionality
 '''
-      ..imports = [
-        'package:id/id.dart'
-      ]
+        ..imports = ['package:id/id.dart']
     ]
     ..libraries = [
       library('id')
-      ..doc = '''
+        ..doc = '''
 
 Support for consistent use of identifiers.  Identifiers are words used to create
 things like class names, variable names, function names, etc. Because different
@@ -51,42 +46,47 @@ with the appropriate conventions (usually via templates) to produce consistent
 correct naming. Most ebisu entities are named (Libraries, Parts, Classes, etc).
 
 '''
-      ..includesLogger = true
-      ..imports = [
-        'dart:convert'
-      ]
-      ..classes = [
-        class_('id')
-        ..doc = "Given an id (all lower case string of words separated by '_')..."
-        ..hasOpEquals = true
-        ..implement = [ 'Comparable<Id>' ]
-        ..members = [
-          member('id')
-          ..doc = "String containing the lower case words separated by '_'"
-          ..access = Access.RO
-          ..isFinal = true,
-          member('words')
-          ..doc = "Words comprising the id"
-          ..type = 'List<String>'
-          ..access = Access.RO
-          ..isFinal = true
-        ],
-        class_('no_op_id')
-        ..implement = [ 'Id' ]
-        ..doc = '''
+        ..includesLogger = true
+        ..imports = ['dart:convert']
+        ..classes = [
+          class_('id')
+            ..doc =
+                "Given an id (all lower case string of words separated by '_')..."
+            ..hasOpEquals = true
+            ..implement = ['Comparable<Id>']
+            ..members = [
+              member('id')
+                ..doc =
+                    "String containing the lower case words separated by '_'"
+                ..access = Access.RO
+                ..isFinal = true,
+              member('words')
+                ..doc = "Words comprising the id"
+                ..type = 'List<String>'
+                ..access = Access.RO
+                ..isFinal = true
+            ],
+          class_('no_op_id')
+            ..implement = ['Id']
+            ..doc = '''
 Supports the same interface as Id but all transformations like [camel], [snake],
 ... resolve to no-ops.
 
 This provides the ability to circumvent hard *Id* casing rules in certain
 circumstances.
 '''
-        ..isImmutable = true
-        ..members = [
-          member('id')
-          ..doc = "String containing the lower case words separated by '_'"
-          ..access = Access.RO
+            ..defaultMemberAccess = RO
+            ..members = [
+              member('id')
+                ..doc =
+                    "String containing the lower case words separated by '_'"
+                ..isFinal = true,
+              member('words')
+                ..doc = "Words comprising the id"
+                ..type = 'List<String>'
+                ..isFinal = true
+            ]
         ]
-      ]
     ];
   ebisu.generate();
 }

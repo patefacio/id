@@ -8,7 +8,7 @@
 library id.id;
 
 import 'dart:convert';
-import 'package:collection/equality.dart';
+import 'package:collection/collection.dart';
 import 'package:logging/logging.dart';
 import 'package:quiver/core.dart';
 
@@ -148,10 +148,11 @@ class Id implements Comparable<Id> {
 /// This provides the ability to circumvent hard *Id* casing rules in certain
 /// circumstances.
 class NoOpId implements Id {
-  const NoOpId(this._id);
-
   /// String containing the lower case words separated by '_'
   String get id => _id;
+
+  /// Words comprising the id
+  List<String> get words => _words;
 
   // custom <class NoOpId>
 
@@ -194,9 +195,14 @@ class NoOpId implements Id {
 
   toJson() => JSON.encode({"id": _id});
 
+  NoOpId(id) :
+    _id = id,
+    _words = id.split('_');
+
   // end <class NoOpId>
 
   final String _id;
+  final List<String> _words;
 }
 
 // custom <library id>

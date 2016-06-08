@@ -22,7 +22,7 @@ dev_dependencies:
 # custom <id dev dependencies>
 
   test: "^0.12.0"
-  ebisu: "^0.7.1"
+  ebisu: "^0.7.2"
 
 # end <id dev dependencies>
 
@@ -30,7 +30,7 @@ dependency_overrides:
 # custom <id dependency overrides>
 
 #  ebisu:
-#    path: /home/dbdavidson/dev/open_source/ebisu
+#    path: ../ebisu
 
 environment:
   sdk: ">=1.8.0 <2.0.0"
