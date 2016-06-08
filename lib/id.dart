@@ -195,9 +195,9 @@ class NoOpId implements Id {
 
   toJson() => JSON.encode({"id": _id});
 
-  NoOpId(id) :
-    _id = id,
-    _words = id.split('_');
+  NoOpId(id)
+      : _id = id,
+        _words = id.split('_');
 
   // end <class NoOpId>
 
