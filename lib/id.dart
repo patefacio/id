@@ -24,6 +24,7 @@ class Id implements Comparable<Id> {
       identical(this, other) ||
       _id == other._id && const ListEquality().equals(_words, other._words);
 
+  @override
   int get hashCode => hash2(_id, const ListEquality<String>().hash(_words));
 
   /// String containing the lower case words separated by '_'
@@ -46,8 +47,10 @@ class Id implements Comparable<Id> {
     }
   }
 
+  /// Create an [Id] from string in camels case
   Id.fromCamels(String camelId) : this(splitCamelHumps(camelId));
 
+  /// Create an [Id] from string in camels case
   static Id idFromCamels(String camelId) => new Id.fromCamels(camelId);
 
   /// Return true if [text] is camel case
@@ -79,7 +82,7 @@ class Id implements Comparable<Id> {
       throw new ArgumentError("Camels can not have underscore: $text");
     }
 
-     return text
+    return text
         .splitMapJoin(_capWordDelimiterRe,
             onMatch: (Match match) => match.group(0).toLowerCase(),
             onNonMatch: (String nonMatch) => nonMatch + '_')
@@ -97,34 +100,44 @@ class Id implements Comparable<Id> {
   static String uncapitalize(String s) =>
       "${s[0].toLowerCase()}${s.substring(1)}";
 
-  /// Return this id as snake case - (i.e. the case passed in for construction) (e.g. `how_now_brown_cow`)
+  /// Return this id as snake case - (i.e. the case passed in for construction)
+  /// (e.g. `how_now_brown_cow`)
   String get snake => _id;
 
-  /// Return this id as hyphenated words (e.g. `how_now_brown_cow` => `how-now-brown-cow`)
+  /// Return this id as hyphenated words (e.g. `how_now_brown_cow` =>
+  /// `how-now-brown-cow`)
   String get emacs => _words.join('-');
 
-  /// Return as camel case, first character lower and each word capitalized (e.g. `how_now_brown_cow` => `howNowBrownCow`)
-  String get camel => uncapitalize(_words.map((w) => capitalize(w)).join(''));
+  /// Return as camel case, first character lower and each word capitalized
+  /// (e.g. `how_now_brown_cow` => `howNowBrownCow`)
+  String get camel =>
+      uncapitalize(_words.map((String w) => capitalize(w)).join(''));
 
-  /// Return as cap camel case, same as camel with first word capitalized (e.g. `how_now_brown_cow` => `HowNowBrownCow`)
-  String get capCamel => _words.map((w) => capitalize(w)).join('');
+  /// Return as cap camel case, same as camel with first word capitalized
+  /// (e.g. `how_now_brown_cow` => `HowNowBrownCow`)
+  String get capCamel => _words.map((String w) => capitalize(w)).join('');
 
   /// Return snake case capitalized (e.g. `how_now_brown_cow` => 'How_now_brown_cow`)
   String get capSnake => capitalize(snake);
 
-  /// Return all caps with underscore separator (e.g. `how_now_brown_cow` => `HOW_NOW_BROWN_COW`)
-  String get shout => _words.map((w) => w.toUpperCase()).join('_');
+  /// Return all caps with underscore separator (e.g. `how_now_brown_cow` =>
+  /// `HOW_NOW_BROWN_COW`)
+  String get shout => _words.map((String w) => w.toUpperCase()).join('_');
 
-  /// Return each word capitalized with space `' '` separator (e.g. `how_now_brown_cow` => `How Now Brown Cow`)
-  String get title => _words.map((w) => capitalize(w)).join(' ');
+  /// Return each word capitalized with space `' '` separator
+  /// (e.g. `how_now_brown_cow` => `How Now Brown Cow`)
+  String get title => _words.map((String w) => capitalize(w)).join(' ');
 
-  /// Return words squished together with no separator (e.g. `how_now_brown_cow` => `hownowbrowncow`)
+  /// Return words squished together with no separator (e.g. `how_now_brown_cow`
+  /// => `hownowbrowncow`)
   String get squish => _words.join('');
 
-  /// Return first letter of each word joined together (e.g. `how_now_brown_cow` => `hnbc`)
-  String get abbrev => _words.map((w) => w[0]).join();
+  /// Return first letter of each word joined together (e.g. `how_now_brown_cow`
+  /// => `hnbc`)
+  String get abbrev => _words.map((String w) => w[0]).join();
 
-  /// Return the words joined with spaces like a sentence only (without first word capitalized)
+  /// Return the words joined with spaces like a sentence only (without first
+  /// word capitalized)
   String get sentence => _words.join(' ');
 
   /// Return new id as the plural of the argument (`Id('dog')` => `Id('dogs')`)
@@ -133,7 +146,8 @@ class Id implements Comparable<Id> {
   /// Returns the id with default casing of [camel]
   String toString() => camel;
 
-  toJson() => JSON.encode({"id": _id});
+  /// Return [Id] as json string
+  String toJson() => JSON.encode({"id": _id});
 
   /// Returns a negative number if [this] is before [other], a postivie number
   /// if [this] is after other and zero if they are the same
@@ -144,6 +158,7 @@ class Id implements Comparable<Id> {
     return fromJsonMap(jsonMap);
   }
 
+  /// Return constructed [Id] from json map representing an [Id]
   static Id fromJsonMap(Map jsonMap) {
     return new Id(jsonMap["id"]);
   }
@@ -205,7 +220,8 @@ class NoOpId implements Id {
   /// if [this] is after other and zero if they are the same
   int compareTo(Id other) => id.compareTo(other.id);
 
-  toJson() => JSON.encode({"id": _id});
+  /// Return [Id] as json string
+  String toJson() => JSON.encode({"id": _id});
 
   NoOpId(id)
       : _id = id,
@@ -245,13 +261,13 @@ Id idFromString(String text) => Id.isSnake(text)
                 : throw new ArgumentError("$text is neither snake or camel"))));
 
 /// Creates an [Id] when passed [String], returns the Id when passed an Id
-Id getOrCreateId(id) => id is Id
+Id getOrCreateId(dynamic id) => id is Id
     ? id
     : id is String
         ? idFromString(id)
         : throw '*getOrCreateId(id)* requires an [Id] or [String], given ${id.runtimeType}';
 
-final _whiteSpaceRe = new RegExp(r'\s+');
+final RegExp _whiteSpaceRe = new RegExp(r'\s+');
 
 /// Create an [Id] from a sentence like string of white-space delimited words
 ///
@@ -264,7 +280,7 @@ final _whiteSpaceRe = new RegExp(r'\s+');
 Id idFromWords(String words) =>
     idFromString(words.trim().replaceAll(_whiteSpaceRe, '_'));
 
-final _capSubstring = new RegExp(r'([A-Z]+)([A-Z]|$)');
+final RegExp _capSubstring = new RegExp(r'([A-Z]+)([A-Z]|$)');
 
 ///
 /// Given a camel case word [s] with all cap abbreviations embedded, converts
