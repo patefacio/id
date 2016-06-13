@@ -8,20 +8,20 @@ import 'package:test/test.dart';
 // custom <additional imports>
 // end <additional imports>
 
-final _logger = new Logger('test_id');
+final Logger _logger = new Logger('test_id');
 
 // custom <library test_id>
 // end <library test_id>
 
-main([List<String> args]) {
+void main([List<String> args]) {
   Logger.root.onRecord.listen(
       (LogRecord r) => print("${r.loggerName} [${r.level}]:\t${r.message}"));
   Logger.root.level = Level.OFF;
 // custom <main>
 
-  var thrownItem = new isInstanceOf<ArgumentError>();
+  isInstanceOf<ArgumentError> thrownItem = new isInstanceOf<ArgumentError>();
 
-  common(tn) {
+  _common(Id tn) {
     expect(tn.id, 'test_name');
 
     expect(tn.abbrev, 'tn');
@@ -37,22 +37,22 @@ main([List<String> args]) {
 
   group('basics', () {
     test('default creation (snake)', () {
-      common(new Id('test_name'));
+      _common(new Id('test_name'));
       expect(() => new Id('test name'), throwsA(thrownItem));
       expect(() => new Id('testName'), throwsA(thrownItem));
     });
 
     test('creation from camels', () {
-      common(new Id.fromCamels('testName'));
-      common(new Id.fromCamels('TestName'));
+      _common(new Id.fromCamels('testName'));
+      _common(new Id.fromCamels('TestName'));
       expect(() => new Id.fromCamels('test name'), throwsA(thrownItem));
       expect(() => new Id.fromCamels('test_name'), throwsA(thrownItem));
     });
 
     test('creation from idFromString/idFromWords', () {
-      common(idFromString('testName'));
-      common(idFromString('test_name'));
-      common(idFromString('TestName'));
+      _common(idFromString('testName'));
+      _common(idFromString('test_name'));
+      _common(idFromString('TestName'));
       expect(idFromString('FOOBAR').snake, 'foobar');
       expect(idFromString('FOO_BAR').snake, 'foo_bar');
       expect(idFromWords('this is a test').snake, 'this_is_a_test');
@@ -104,7 +104,7 @@ main([List<String> args]) {
     });
 
     test('json', () {
-      var id = new Id('how_now_brown_cow');
+      Id id = new Id('how_now_brown_cow');
       expect(id, Id.fromJson(id.toJson()));
     });
 

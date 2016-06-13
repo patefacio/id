@@ -15,7 +15,7 @@ import 'package:quiver/core.dart';
 // custom <additional imports>
 // end <additional imports>
 
-final _logger = new Logger('id');
+final Logger _logger = new Logger('id');
 
 /// Given an id (all lower case string of words separated by '_')...
 class Id implements Comparable<Id> {
@@ -49,10 +49,19 @@ class Id implements Comparable<Id> {
 
   static Id idFromCamels(String camelId) => new Id.fromCamels(camelId);
 
+  /// Return true if [text] is camel case
   static bool isCamel(String text) => _camelRe.firstMatch(text) != null;
+
+  /// Return true if [text] is cap camel case
   static bool isCapCamel(String text) => _capCamelRe.firstMatch(text) != null;
+
+  /// Return true if [text] is snake case
   static bool isSnake(String text) => _snakeRe.firstMatch(text) != null;
+
+  /// Return true if [text] is cap snake case
   static bool isCapSnake(String text) => _capSnakeRe.firstMatch(text) != null;
+
+  /// Return true if [text] is all caps
   static bool isAllCap(String text) => _allCapRe.firstMatch(text) != null;
 
   static RegExp _capCamelRe = new RegExp(r'^[A-Z][A-Za-z\d]*$');
@@ -63,6 +72,7 @@ class Id implements Comparable<Id> {
   static RegExp _allCapRe = new RegExp(r'^[A-Z][A-Z_\d]+$');
   static RegExp _leadingTrailingUnderbarRe = new RegExp(r'(?:^_)|(?:_$)');
 
+  /// Split [text] camel text into words
   static String splitCamelHumps(String text) {
     if (text.indexOf('_') >= 0) {
       throw new ArgumentError("Camels can not have underscore: $text");
@@ -201,7 +211,9 @@ class NoOpId implements Id {
 
   // end <class NoOpId>
 
+  @override
   final String _id;
+  @override
   final List<String> _words;
 }
 

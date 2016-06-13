@@ -80,13 +80,15 @@ circumstances.
               member('id')
                 ..doc =
                     "String containing the lower case words separated by '_'"
+                ..isOverride = true
                 ..isFinal = true,
               member('words')
                 ..doc = "Words comprising the id"
                 ..type = 'List<String>'
+                ..isOverride = true
                 ..isFinal = true
             ]
         ]
     ];
-  ebisu.generate();
+  ebisu.generate(generateDrudge:false);
 }
