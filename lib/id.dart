@@ -19,6 +19,7 @@ final Logger _logger = new Logger('id');
 
 /// Given an id (all lower case string of words separated by '_')...
 class Id implements Comparable<Id> {
+  @override
   bool operator ==(Id other) =>
       identical(this, other) ||
       _id == other._id && const ListEquality().equals(_words, other._words);
@@ -78,22 +79,23 @@ class Id implements Comparable<Id> {
       throw new ArgumentError("Camels can not have underscore: $text");
     }
 
-    var result = text
+     return text
         .splitMapJoin(_capWordDelimiterRe,
             onMatch: (Match match) => match.group(0).toLowerCase(),
             onNonMatch: (String nonMatch) => nonMatch + '_')
         .replaceAll(_leadingTrailingUnderbarRe, '');
-    return result;
   }
 
   static final RegExp _hasUpperRe = new RegExp(r"[A-Z]");
   static final RegExp _validSnakeRe = new RegExp(r"^[a-z][a-z\d_]*$");
 
   /// Capitalize the string (i.e. make first character capital, leaving rest alone)
-  static capitalize(String s) => "${s[0].toUpperCase()}${s.substring(1)}";
+  static String capitalize(String s) =>
+      "${s[0].toUpperCase()}${s.substring(1)}";
 
   /// Unapitalize the string (i.e. make first character lower, leaving rest alone)
-  static uncapitalize(String s) => "${s[0].toLowerCase()}${s.substring(1)}";
+  static String uncapitalize(String s) =>
+      "${s[0].toLowerCase()}${s.substring(1)}";
 
   /// Return this id as snake case - (i.e. the case passed in for construction) (e.g. `how_now_brown_cow`)
   String get snake => _id;

@@ -20,8 +20,8 @@ void main([List<String> args]) {
 // custom <main>
 
   test('id methods on NoOpId', () {
-    final s = 'thisIsATest';
-    final noOpId = new NoOpId(s);
+    String s = 'thisIsATest';
+    NoOpId noOpId = new NoOpId(s);
 
     expect(noOpId.snake, s);
     expect(noOpId.emacs, s);

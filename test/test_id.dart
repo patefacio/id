@@ -21,7 +21,7 @@ void main([List<String> args]) {
 
   isInstanceOf<ArgumentError> thrownItem = new isInstanceOf<ArgumentError>();
 
-  _common(Id tn) {
+  void _common(Id tn) {
     expect(tn.id, 'test_name');
 
     expect(tn.abbrev, 'tn');
