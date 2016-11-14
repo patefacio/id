@@ -1,5 +1,5 @@
 name: id
-version: 1.0.15
+version: 1.0.16
 author: Daniel Davidson <dbdavidson@yahoo.com>
 homepage: https://github.com/patefacio/id
 description: >
@@ -31,9 +31,6 @@ dependency_overrides:
 
 #  ebisu:
 #    path: ../ebisu
-
-environment:
-  sdk: ">=1.8.0 <2.0.0"
     
 # end <id dependency overrides>
 
