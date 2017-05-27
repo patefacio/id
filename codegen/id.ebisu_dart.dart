@@ -17,6 +17,7 @@ void main() {
   _topDir = path.dirname(path.dirname(here));
   System ebisu = system('id')
     ..license = 'boost'
+    ..pubSpec.author = 'Daniel Davidson <dbdavidson@yahoo.com>'
     ..pubSpec.homepage = 'https://github.com/patefacio/id'
     ..pubSpec.version = '1.0.15'
     ..pubSpec.doc = 'Library for consistent usage of identifiers'
