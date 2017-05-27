@@ -1,5 +1,5 @@
 name: id
-version: 1.0.15
+version: 1.0.16
 author: Daniel Davidson <dbdavidson@yahoo.com>
 homepage: https://github.com/patefacio/id
 description: >
@@ -11,15 +11,15 @@ dependencies:
 
 # custom <id dependencies>
   collection: "^1.1.0"
-  quiver: ">=0.21.0<0.22.0"
-  logging: ">=0.9.3<0.10.0"  
+  quiver: ">=0.21.0<0.25.0"
+  logging: ">=0.9.3<0.12.0"
 # end <id dependencies>
 
 dev_dependencies:
 
 # custom <id dev dependencies>
 
-  test: "^0.12.0"
+  test: ">=0.12.0 < 0.14.0"
   ebisu: "^0.7.4"
 
 # end <id dev dependencies>

@@ -19,7 +19,7 @@ void main() {
     ..license = 'boost'
     ..pubSpec.author = 'Daniel Davidson <dbdavidson@yahoo.com>'
     ..pubSpec.homepage = 'https://github.com/patefacio/id'
-    ..pubSpec.version = '1.0.15'
+    ..pubSpec.version = '1.0.16'
     ..pubSpec.doc = 'Library for consistent usage of identifiers'
     ..rootPath = '$_topDir'
     ..doc = 'Provide basic utilities for consistently creating identfiers'
