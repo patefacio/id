@@ -26,10 +26,6 @@ dev_dependencies:
 
 dependency_overrides:
 # custom <id dependency overrides>
-
-#  ebisu:
-#    path: ../ebisu
-
 # end <id dependency overrides>
 
 transformers:
