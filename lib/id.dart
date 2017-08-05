@@ -235,6 +235,34 @@ class NoOpId implements Id {
   final List<String> _words;
 }
 
+/// Id-like object with special overrides for [snake], [emacs], [camel], [capCamel]
+/// and [capSnake] which end in *unserscore* (or *hyphen* for emacs). The purpose is
+/// to support special *terms* that conflict with keywords in target languages (e.g.
+/// String -> String_)
+class IdTrailingUnderscore extends Id {
+  // custom <class IdTrailingUnderscore>
+
+  IdTrailingUnderscore(dynamic id) : super(id);
+
+  @override
+  String get snake => super.snake + '_';
+
+  @override
+  String get emacs => super.emacs + '-';
+
+  @override
+  String get camel => super.camel + '_';
+
+  @override
+  String get capCamel => super.capCamel + '_';
+
+  @override
+  String get capSnake => Id.capitalize(super.snake) + '_';
+
+  // end <class IdTrailingUnderscore>
+
+}
+
 // custom <library id>
 
 /// Create an [Id] from text

@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "codegen",
+            "type": "dart-cli",
+            "request": "launch",
+            "program": "${workspaceRoot}/codegen/id.ebisu_dart.dart"
+        },
+        {
+            "name": "runner",
+            "type": "dart-cli",
+            "request": "launch",
+            "program": "${workspaceRoot}/test/runner.dart"
+        }
+    ]
+}

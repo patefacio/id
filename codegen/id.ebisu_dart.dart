@@ -19,7 +19,7 @@ void main() {
     ..license = 'boost'
     ..pubSpec.author = 'Daniel Davidson <dbdavidson@yahoo.com>'
     ..pubSpec.homepage = 'https://github.com/patefacio/id'
-    ..pubSpec.version = '1.0.16'
+    ..pubSpec.version = '1.0.17'
     ..pubSpec.doc = 'Library for consistent usage of identifiers'
     ..rootPath = '$_topDir'
     ..doc = 'Provide basic utilities for consistently creating identfiers'
@@ -88,7 +88,14 @@ circumstances.
                 ..type = 'List<String>'
                 ..isOverride = true
                 ..isFinal = true
-            ]
+            ],
+          class_('id_trailing_underscore') 
+          ..doc = '''
+Id-like object with special overrides for [snake], [emacs], [camel], [capCamel]
+and [capSnake] which end in *unserscore* (or *hyphen* for emacs). The purpose is
+to support special *terms* that conflict with keywords in target languages (e.g.
+String -> String_)'''
+           ..extend = 'Id'
         ]
     ];
   ebisu.generate(generateDrudge:false);

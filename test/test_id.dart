@@ -115,6 +115,15 @@ void main([List<String> args]) {
       expect(capSubstringToCamel('gooFOOMoo'), 'gooFooMoo');
       expect(capSubstringToCamel('CIASpy'), 'CiaSpy');
     });
+
+    test('idTrailingUnderscore', () {
+      makeId(dynamic id) => new IdTrailingUnderscore(id);
+      expect(makeId('simple_test').capCamel, 'SimpleTest_');
+      expect(makeId('simple_test').camel, 'simpleTest_');
+      expect(makeId('simple_test').snake, 'simple_test_');
+      expect(makeId('simple_test').capSnake, 'Simple_test_');
+      expect(makeId('simple_test').emacs, 'simple-test-');
+    });
   });
 
 // end <main>
