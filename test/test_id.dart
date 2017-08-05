@@ -123,6 +123,8 @@ void main([List<String> args]) {
       expect(makeId('simple_test').snake, 'simple_test_');
       expect(makeId('simple_test').capSnake, 'Simple_test_');
       expect(makeId('simple_test').emacs, 'simple-test-');
+
+      expect(idTrailingUnderscore('simple_test').emacs, 'simple-test-');
     });
   });
 

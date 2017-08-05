@@ -319,4 +319,8 @@ final RegExp _capSubstring = new RegExp(r'([A-Z]+)([A-Z]|$)');
 capSubstringToCamel(String s) => s.replaceAllMapped(
     _capSubstring, (Match m) => '${Id.capitalize(m[1].toLowerCase())}${m[2]}');
 
+
+/// Create a new [IdTrailingUnderscore]
+Id idTrailingUnderscore(dynamic id) => new IdTrailingUnderscore(id);
+
 // end <library id>
