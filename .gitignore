@@ -15,6 +15,7 @@ build/
 # custom <additional>
 
 pubspec.lock
+.dart_tool/**
 
 # end <additional>
 
