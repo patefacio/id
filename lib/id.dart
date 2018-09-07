@@ -20,12 +20,15 @@ final Logger _logger = new Logger('id');
 /// Given an id (all lower case string of words separated by '_')...
 class Id implements Comparable<Id> {
   @override
-  bool operator ==(Id other) =>
+  bool operator ==(other) =>
       identical(this, other) ||
-      _id == other._id && const ListEquality().equals(_words, other._words);
+      (other is Id &&
+          _id == other._id &&
+          const ListEquality().equals(_words, other._words));
 
   @override
-  int get hashCode => hash2(_id, const ListEquality<String>().hash(_words));
+  int get hashCode =>
+      hash2(_id, const ListEquality<String>().hash(_words ?? const []));
 
   /// String containing the lower case words separated by '_'
   String get id => _id;
@@ -318,7 +321,6 @@ final RegExp _capSubstring = new RegExp(r'([A-Z]+)([A-Z]|$)');
 ///
 capSubstringToCamel(String s) => s.replaceAllMapped(
     _capSubstring, (Match m) => '${Id.capitalize(m[1].toLowerCase())}${m[2]}');
-
 
 /// Create a new [IdTrailingUnderscore]
 Id idTrailingUnderscore(dynamic id) => new IdTrailingUnderscore(id);

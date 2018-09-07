@@ -20,23 +20,23 @@ void main() {
     ..pubSpec.author = 'Daniel Davidson <dbdavidson@yahoo.com>'
     ..pubSpec.homepage = 'https://github.com/patefacio/id'
     ..pubSpec.version = '1.0.17'
-    ..pubSpec.doc = 'Library for consistent usage of identifiers'
+    ..pubSpec.doc = 'library_ for consistent usage of identifiers'
     ..rootPath = '$_topDir'
     ..doc = 'Provide basic utilities for consistently creating identfiers'
     ..testLibraries = [
-      library('test_id')
+      library_('test_id')
         ..doc = '''
 Tests id functionality
 '''
         ..imports = ['package:id/id.dart'],
-      library('test_no_op_id')
+      library_('test_no_op_id')
         ..doc = '''
 Tests NoOpId functionality
 '''
         ..imports = ['package:id/id.dart']
     ]
     ..libraries = [
-      library('id')
+      library_('id')
         ..doc = '''
 
 Support for consistent use of identifiers.  Identifiers are words used to create

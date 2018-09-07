@@ -8,6 +8,6 @@ void main() {
     print('${rec.level.name}: ${rec.time}: ${rec.message}');
   });
 
-  test_id.main();
-  test_no_op_id.main();
+  test_id.main(null);
+  test_no_op_id.main(null);
 }

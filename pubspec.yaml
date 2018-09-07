@@ -3,10 +3,9 @@ version: 1.0.17
 author: Daniel Davidson <dbdavidson@yahoo.com>
 homepage: https://github.com/patefacio/id
 description: >
-  Library for consistent usage of identifiers
+  library_ for consistent usage of identifiers
 environment:
   sdk: '>=2.0.0-dev.61 <3.0.0'
-
 
 dependencies:
 
