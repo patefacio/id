@@ -147,14 +147,14 @@ class Id implements Comparable<Id> {
   String toString() => camel;
 
   /// Return [Id] as json string
-  String toJson() => JSON.encode({"id": _id});
+  String toJson() => json.encode({"id": _id});
 
   /// Returns a negative number if [this] is before [other], a postivie number
   /// if [this] is after other and zero if they are the same
   int compareTo(Id other) => id.compareTo(other.id);
 
-  static Id fromJson(String json) {
-    Map jsonMap = JSON.decode(json);
+  static Id fromJson(String jsonString) {
+    Map jsonMap = json.decode(jsonString);
     return fromJsonMap(jsonMap);
   }
 
@@ -221,7 +221,7 @@ class NoOpId implements Id {
   int compareTo(Id other) => id.compareTo(other.id);
 
   /// Return [Id] as json string
-  String toJson() => JSON.encode({"id": _id});
+  String toJson() => json.encode({"id": _id});
 
   NoOpId(id)
       : _id = id,
