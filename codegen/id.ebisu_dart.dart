@@ -98,5 +98,5 @@ String -> String_)'''
            ..extend = 'Id'
         ]
     ];
-  ebisu.generate(generateDrudge:false);
+  ebisu.generate();
 }
